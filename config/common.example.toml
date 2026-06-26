@@ -1,0 +1,14 @@
+# Example only. Copy to a private repository before adding real values.
+
+[profile]
+name = "example-user"
+language = "en"
+
+[repositories]
+skills_curated = "https://github.com/example/agent-skills-curated"
+resource_radar = "https://github.com/example/resource-radar"
+
+[safety]
+public_template = true
+contains_real_memory = false
+contains_credentials = false
