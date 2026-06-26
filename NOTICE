@@ -1,0 +1,8 @@
+codex-user-config-template
+
+This repository contains public-safe template material created for portable Codex user-configuration baselines.
+
+Repository-owned code, scripts, schemas, workflows, and tests are licensed under Apache-2.0.
+Repository-owned documentation and taxonomy-style prose may also be used under CC BY 4.0 where explicitly stated.
+
+Private configuration, personal memory, preferences, credentials, account state, runtime logs, local paths, and third-party restricted content are excluded from this public template and from any public license grant.

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "kind": "codex-user-config-template",
+  "public_safe": true,
+  "private_repository_required": true,
+  "managed_paths": [
+    "config/",
+    "docs/",
+    "hooks/",
+    "memory/",
+    "skills/"
+  ],
+  "excluded_from_public_template": [
+    "real_memory_snapshots",
+    "credentials",
+    "oauth_state",
+    "session_state",
+    "local_machine_paths",
+    "personal_preferences",
+    "runtime_logs"
+  ]
+}
