@@ -83,6 +83,20 @@ def verify_language_links() -> None:
         fail("README.md language switch is missing or inconsistent")
     if "[English](README.md) | 简体中文" not in chinese:
         fail("README.zh-CN.md language switch is missing or inconsistent")
+    for phrase in [
+        "System context",
+        "open-resource-governance/docs/system-topology.md",
+        "public Codex-configuration template lane",
+    ]:
+        if phrase not in english:
+            fail(f"README.md missing system-context phrase: {phrase}")
+    for phrase in [
+        "系统位置",
+        "open-resource-governance/docs/system-topology.md",
+        "公开 Codex 配置模板 lane",
+    ]:
+        if phrase not in chinese:
+            fail(f"README.zh-CN.md missing system-context phrase: {phrase}")
 
 
 def main() -> None:

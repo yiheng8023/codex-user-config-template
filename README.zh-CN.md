@@ -4,6 +4,29 @@
 
 这是一个公开安全模板，用来帮助用户创建自己的私有 Codex 用户配置仓；它不发布个人记忆、偏好、凭据、账号状态或本机运行时细节。
 
+## 系统位置
+
+本仓库是
+[`open-resource-governance`](https://github.com/yiheng8023/open-resource-governance)
+生态中的公开 Codex 配置模板 lane。
+
+```text
+open-resource-governance
+  -> 负责整个仓库家族地图和公开/私有规则
+
+codex-user-config-template
+  -> 提供公开安全结构、占位符、验证和搭建说明
+
+私有 codex-user-config
+  -> 负责真实 Codex 记忆快照、偏好、安装策略、备份和回滚
+
+agent-skills-curated
+  -> 可发布已审查 Skill release，由私有 Codex 配置仓消费
+```
+
+如果你需要安全起点，从本仓开始即可。若要理解更大的系统关系，请看总仓拓扑：
+[`open-resource-governance/docs/system-topology.md`](https://github.com/yiheng8023/open-resource-governance/blob/main/docs/system-topology.md)。
+
 ## 仓库职责
 
 本仓库是模板，不是真实用户配置。它提供安全边界清晰、结构可迁移、可验证的私有配置仓起点。

@@ -4,6 +4,30 @@ English | [简体中文](README.zh-CN.md)
 
 Public-safe template for creating a private Codex user-configuration repository without publishing personal memory, preferences, credentials, account state, or machine-local runtime details.
 
+## System context
+
+This repository is the public Codex-configuration template lane in the
+[`open-resource-governance`](https://github.com/yiheng8023/open-resource-governance)
+ecosystem.
+
+```text
+open-resource-governance
+  -> maps the whole repository family and public/private rules
+
+codex-user-config-template
+  -> provides public-safe structure, placeholders, validation, and setup guidance
+
+private codex-user-config
+  -> owns real Codex memory snapshots, preferences, install policy, backups, and rollback
+
+agent-skills-curated
+  -> may publish reviewed Skill releases that a private Codex configuration can consume
+```
+
+Use this repository when you want a safe starting point. Use the hub topology
+when you want to understand the wider system:
+[`open-resource-governance/docs/system-topology.md`](https://github.com/yiheng8023/open-resource-governance/blob/main/docs/system-topology.md).
+
 ## Repository Role
 
 This repository is a template, not a live user configuration. It helps a user build their own private configuration repository with clear safety boundaries, portable structure, and verification hooks.
