@@ -86,14 +86,16 @@ def verify_language_links() -> None:
     for phrase in [
         "System context",
         "open-resource-governance/docs/system-topology.md",
-        "public Codex-configuration template workstream",
+        "public Codex-specific configuration template workstream",
+        "broader agent-environment portability pattern",
     ]:
         if phrase not in english:
             fail(f"README.md missing system-context phrase: {phrase}")
     for phrase in [
         "系统位置",
         "open-resource-governance/docs/system-topology.md",
-        "公开 Codex 配置模板链路",
+        "公开 Codex 专用配置模板链路",
+        "更通用的 agent 环境可迁移模式",
     ]:
         if phrase not in chinese:
             fail(f"README.zh-CN.md missing system-context phrase: {phrase}")
