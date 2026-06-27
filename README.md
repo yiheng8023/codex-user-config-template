@@ -4,9 +4,18 @@ English | [简体中文](README.zh-CN.md)
 
 Public-safe template for creating a private Codex user-configuration repository without publishing personal memory, preferences, credentials, account state, or machine-local runtime details.
 
+## Start here
+
+| If you want to... | Go here |
+| --- | --- |
+| Create your own private Codex config repo | Use this template as the public-safe starting point |
+| Check what is safe to copy | [`docs/`](docs) and placeholder examples under `config/`, `memory/`, and `skills/` |
+| Verify the template | `python -B scripts/verify.py` |
+| Understand the full system | [`open-resource-governance/docs/system-topology.md`](https://github.com/yiheng8023/open-resource-governance/blob/main/docs/system-topology.md) |
+
 ## System context
 
-This repository is the public Codex-configuration template lane in the
+This repository is the public Codex-configuration template workstream in the
 [`open-resource-governance`](https://github.com/yiheng8023/open-resource-governance)
 ecosystem.
 
@@ -65,11 +74,11 @@ Public-to-private sync can be automated for reusable template surfaces. Private-
 
 ## Relationship To The Wider System
 
-This template is one lane in a modular resource-governance system:
+This template is one workstream in a modular resource-governance system:
 
 - `resource-radar` discovers and evaluates public resources.
 - `agent-skills-curated` governs reviewed Skill content and release manifests.
-- bookmark repositories provide public-safe source directories and private overlays.
+- bookmark repositories provide public-safe source directories while private bookmark repositories keep private content.
 - private user configuration repositories install, verify, and operate the user's actual environment.
 
 ## Layout
