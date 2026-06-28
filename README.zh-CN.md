@@ -14,6 +14,7 @@
 | --- | --- |
 | 创建自己的私有 Codex 配置仓 | 把本仓作为公开安全起点 |
 | 判断哪些内容可以复制 | 查看 [`docs/`](docs) 以及 `config/`、`memory/`、`skills/` 下的占位示例 |
+| 保留请求入口与能力路由边界 | [`docs/request-intake-and-capability-boundaries.md`](docs/request-intake-and-capability-boundaries.md) |
 | 验证模板是否安全 | `python -B scripts/verify.py` |
 | 理解整套系统 | [`open-resource-governance/docs/system-topology.md`](https://github.com/yiheng8023/open-resource-governance/blob/main/docs/system-topology.md) |
 
@@ -52,6 +53,7 @@ agent-skills-curated
 - 只包含占位符的示例配置。
 - 用于检查公开安全与结构有效性的验证脚本。
 - 关于公开/私有同步、许可证边界和私有仓搭建的说明。
+- 公开安全的请求入口与能力路由边界说明，可被私有仓吸收进 `AGENTS.md`、入口 Skill、路由 Skill 与验证样例。
 
 ## 本仓库不负责什么
 
@@ -90,7 +92,7 @@ private codex-user-config
 
 ```text
 config/                  占位示例配置
-docs/                    公开/私有边界与搭建说明
+docs/                    公开/私有、入口/路由边界与搭建说明
 hooks/                   Hook 策略占位，不是真实运行中的自动化
 memory/                  记忆边界占位，不是真实记忆
 scripts/verify.py        公开安全与结构验证

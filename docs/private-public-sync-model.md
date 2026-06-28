@@ -22,7 +22,10 @@ Private to public must be a promote step:
 2. remove personal data and local state;
 3. scan for secrets and restricted content;
 4. check license and provenance;
-5. open a reviewed pull request;
-6. merge only after human approval.
+5. remove exact-thread, screenshot, or probe-specific overfitting;
+6. restate the change as a semantic class that works across paraphrases,
+   languages, and future equivalent requests;
+7. open a reviewed pull request;
+8. merge only after human approval.
 
 Do not run blind bidirectional sync between private and public repositories.

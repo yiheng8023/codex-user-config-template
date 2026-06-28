@@ -16,6 +16,7 @@ need different templates because their runtime files and setup surfaces differ.
 | --- | --- |
 | Create your own private Codex config repo | Use this template as the public-safe starting point |
 | Check what is safe to copy | [`docs/`](docs) and placeholder examples under `config/`, `memory/`, and `skills/` |
+| Preserve request-intake and capability-routing boundaries | [`docs/request-intake-and-capability-boundaries.md`](docs/request-intake-and-capability-boundaries.md) |
 | Verify the template | `python -B scripts/verify.py` |
 | Understand the full system | [`open-resource-governance/docs/system-topology.md`](https://github.com/yiheng8023/open-resource-governance/blob/main/docs/system-topology.md) |
 
@@ -54,6 +55,9 @@ This repository is a template, not a live user configuration. It helps a user bu
 - Example configuration files with placeholders only.
 - Verification scripts that check the template stays public-safe and structurally valid.
 - Documentation for public/private sync, license boundaries, and private setup.
+- Public-safe request-intake and capability-routing boundary guidance that can
+  be absorbed into a private `AGENTS.md`, intake Skill, routing Skill, and
+  verification fixtures.
 
 ## What This Repository Does Not Own
 
@@ -92,7 +96,7 @@ This template is one workstream in a modular resource-governance system:
 
 ```text
 config/                  Placeholder example configuration
-docs/                    Public/private boundaries and setup guidance
+docs/                    Public/private, intake/routing, and setup guidance
 hooks/                   Hook policy placeholder, not live automation
 memory/                  Memory boundary placeholder, not real memory
 scripts/verify.py        Public-safety and structure validation

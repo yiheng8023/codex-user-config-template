@@ -20,6 +20,7 @@ REQUIRED_FILES = [
     "docs/public-private-boundary.md",
     "docs/private-public-sync-model.md",
     "docs/private-repo-setup.md",
+    "docs/request-intake-and-capability-boundaries.md",
     "hooks/README.md",
     "memory/README.md",
     "skills/README.md",
@@ -88,6 +89,7 @@ def verify_language_links() -> None:
         "open-resource-governance/docs/system-topology.md",
         "public Codex-specific configuration template workstream",
         "broader agent-environment portability pattern",
+        "request-intake and capability-routing boundaries",
     ]:
         if phrase not in english:
             fail(f"README.md missing system-context phrase: {phrase}")
@@ -96,9 +98,34 @@ def verify_language_links() -> None:
         "open-resource-governance/docs/system-topology.md",
         "公开 Codex 专用配置模板链路",
         "更通用的 agent 环境可迁移模式",
+        "请求入口与能力路由边界",
     ]:
         if phrase not in chinese:
             fail(f"README.zh-CN.md missing system-context phrase: {phrase}")
+
+
+def verify_intake_boundary_docs() -> None:
+    boundary = (ROOT / "docs" / "request-intake-and-capability-boundaries.md").read_text(
+        encoding="utf-8"
+    )
+    for phrase in [
+        "negative-boundary-first",
+        "Active instructions are not user-provided artifacts",
+        "A user's assertion that a task is clear does not bind missing",
+        "Capability routing starts only after the task contract exists",
+        "Probe tokens and exact test prompts are liveness or calibration aids only",
+        "Apply the boundary by semantic class",
+    ]:
+        if phrase not in boundary:
+            fail(f"request-intake boundary doc missing phrase: {phrase}")
+
+    sync_model = (ROOT / "docs" / "private-public-sync-model.md").read_text(encoding="utf-8")
+    for phrase in [
+        "probe-specific overfitting",
+        "semantic class",
+    ]:
+        if phrase not in sync_model:
+            fail(f"private-public sync model missing phrase: {phrase}")
 
 
 def main() -> None:
@@ -106,6 +133,7 @@ def main() -> None:
     verify_manifest()
     verify_no_private_payloads()
     verify_language_links()
+    verify_intake_boundary_docs()
     print("codex-user-config-template verification passed")
 
 
