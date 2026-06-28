@@ -110,11 +110,14 @@ def verify_intake_boundary_docs() -> None:
     )
     for phrase in [
         "negative-boundary-first",
+        "documentation lookup for current",
         "Active instructions are not user-provided artifacts",
+        "unnamed idea, plan",
         "A user's assertion that a task is clear does not bind missing",
         "Capability routing starts only after the task contract exists",
         "Probe tokens and exact test prompts are liveness or calibration aids only",
         "Apply the boundary by semantic class",
+        "doing, viable, mature",
     ]:
         if phrase not in boundary:
             fail(f"request-intake boundary doc missing phrase: {phrase}")
