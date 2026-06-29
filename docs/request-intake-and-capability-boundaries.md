@@ -19,6 +19,9 @@ surfaces, but the reusable boundary should stay public-safe:
   instructions, Skill bodies, memory summaries, runtime instructions, policy
   text, or the collaboration framework as the user's unnamed idea, plan,
   proposal, approach, strategy, design, roadmap, method, option, or subject.
+- Background or prior context is candidate evidence, not automatic binding. Use
+  it only when the current user request points to it and exactly one reasonable
+  subject is exposed.
 - A user's assertion that a task is clear does not bind missing repository,
   target, authority, side-effect, or verification evidence.
 - Do not claim content was added, applied, accepted, incorporated, adopted, or
@@ -35,6 +38,9 @@ surfaces, but the reusable boundary should stay public-safe:
   "this approach", "the previous/current one", "it", and non-English
   equivalents must ask which subject is meant before judging whether it is worth
   doing, viable, mature, reliable, reasonable, or sensible.
+- If visible background contains multiple plausible subjects, the user signals a
+  topic switch, or the user asks about another/new item without providing it,
+  ask the smallest binding question instead of choosing a subject.
 
 For a private repository, encode these rules in the actual agent instruction
 surface, any reusable intake/routing Skills, and verification fixtures. This
