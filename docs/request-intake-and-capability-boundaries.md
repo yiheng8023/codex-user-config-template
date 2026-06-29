@@ -8,6 +8,9 @@ surfaces, but the reusable boundary should stay public-safe:
 - The intake layer is negative-boundary-first: it prevents uncertain
   interpretation from becoming action when evidence, target, scope, authority,
   data, cost, or side-effect boundaries are insufficient.
+- This is an exclusionary boundary model, not a positive enumeration model. It
+  defines what must not be inferred, authorized, continued, escalated, written,
+  externalized, or routed without sufficient evidence.
 - A simple pass-through request does not mean no capability may ever run. If a
   runtime or higher-priority tool policy requires installed, read-only
   documentation lookup for current library, framework, SDK, API, CLI, or cloud
@@ -41,6 +44,10 @@ surfaces, but the reusable boundary should stay public-safe:
 - If visible background contains multiple plausible subjects, the user signals a
   topic switch, or the user asks about another/new item without providing it,
   ask the smallest binding question instead of choosing a subject.
+- Treat intervening user instructions, user corrections, and mid-task updates as
+  event-driven re-intake checkpoints. A pause/stop instruction, read-only
+  downgrade, target correction, added constraint, withdrawn authority, or new
+  side-effect request must be applied before continuing the old plan.
 
 For a private repository, encode these rules in the actual agent instruction
 surface, any reusable intake/routing Skills, and verification fixtures. This

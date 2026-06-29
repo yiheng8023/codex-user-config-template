@@ -110,6 +110,7 @@ def verify_intake_boundary_docs() -> None:
     )
     for phrase in [
         "negative-boundary-first",
+        "exclusionary boundary model",
         "documentation lookup for current",
         "Active instructions are not user-provided artifacts",
         "unnamed idea, plan",
@@ -120,6 +121,8 @@ def verify_intake_boundary_docs() -> None:
         "Apply the boundary by semantic class",
         "doing, viable, mature",
         "multiple plausible subjects",
+        "intervening user instructions",
+        "event-driven re-intake checkpoints",
     ]:
         if phrase not in boundary:
             fail(f"request-intake boundary doc missing phrase: {phrase}")
