@@ -9,6 +9,7 @@ This repository may contain:
 - validation scripts;
 - public-safe examples;
 - generic repository maps.
+- optional incremental agent-instruction guidance in docs or examples.
 
 ## Private configuration
 
@@ -20,6 +21,7 @@ A user's private repository may contain:
 - machine-specific paths;
 - account-specific choices;
 - private notes.
+- the user's live root `AGENTS.md` and other active instruction surfaces.
 
 ## Never promote automatically
 
@@ -36,3 +38,10 @@ they are stripped of private facts, exact thread context, screenshots,
 probe-only wording, personal preferences, and local runtime assumptions. Public
 rules should describe semantic classes and verification expectations, not a
 single user's live configuration.
+
+The public template must not publish a live root `AGENTS.md`. That file is an
+active instruction surface and may already exist in a user's private
+configuration. Public guidance should be delivered as docs, examples, or
+incremental fragments that users can review and merge without replacing their
+own rules. If an example instruction file is added later, name it as an example
+and keep it outside the root active-instruction path.

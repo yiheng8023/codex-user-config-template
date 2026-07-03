@@ -12,7 +12,15 @@ private configuration
 
 ## Safe direction
 
-Public to private can be mostly automated because the public template is designed to be non-sensitive.
+Public to private can be mostly automated because the public template is
+designed to be non-sensitive. Active instruction surfaces still require care:
+public guidance should be merged as reviewed incremental material, not copied
+over a user's existing root `AGENTS.md`.
+
+The public template intentionally does not ship a live root `AGENTS.md`. Keep
+agent instruction guidance in docs, examples, or private repositories unless a
+specific public-safe example is needed and clearly labeled as non-authoritative
+sample material.
 
 ## Guarded direction
 
@@ -29,3 +37,9 @@ Private to public must be a promote step:
 8. merge only after human approval.
 
 Do not run blind bidirectional sync between private and public repositories.
+
+Do not promote a private root `AGENTS.md` as a public root `AGENTS.md`. If a
+rule is reusable, extract the smallest public-safe rule, remove personal meta
+guidance and local assumptions, restate it as a semantic class, and publish it
+as documentation or a clearly named example fragment. The private repository
+remains the authority for the user's live instruction stack.

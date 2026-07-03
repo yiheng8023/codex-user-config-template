@@ -54,6 +54,11 @@ def verify_required_files() -> None:
         require_file(path)
 
 
+def verify_no_live_agents_md() -> None:
+    if (ROOT / "AGENTS.md").exists():
+        fail("root AGENTS.md must not be published in the public template")
+
+
 def verify_manifest() -> None:
     manifest_path = ROOT / "config" / "manifest.example.json"
     data = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -103,6 +108,22 @@ def verify_language_links() -> None:
         if phrase not in chinese:
             fail(f"README.zh-CN.md missing system-context phrase: {phrase}")
 
+    for phrase in [
+        "intentionally does not ship a root `AGENTS.md`",
+        "incremental material",
+        "not as a file to copy over an existing `AGENTS.md`",
+    ]:
+        if phrase not in english:
+            fail(f"README.md missing AGENTS boundary phrase: {phrase}")
+
+    for phrase in [
+        "故意不提供根目录 `AGENTS.md`",
+        "增量材料",
+        "而不是拿来替换",
+    ]:
+        if phrase not in chinese:
+            fail(f"README.zh-CN.md missing AGENTS boundary phrase: {phrase}")
+
 
 def verify_intake_boundary_docs() -> None:
     boundary = (ROOT / "docs" / "request-intake-and-capability-boundaries.md").read_text(
@@ -131,6 +152,9 @@ def verify_intake_boundary_docs() -> None:
     for phrase in [
         "probe-specific overfitting",
         "semantic class",
+        "public guidance should be merged as reviewed incremental material",
+        "does not ship a live root `AGENTS.md`",
+        "Do not promote a private root `AGENTS.md` as a public root `AGENTS.md`",
     ]:
         if phrase not in sync_model:
             fail(f"private-public sync model missing phrase: {phrase}")
@@ -138,6 +162,7 @@ def verify_intake_boundary_docs() -> None:
 
 def main() -> None:
     verify_required_files()
+    verify_no_live_agents_md()
     verify_manifest()
     verify_no_private_payloads()
     verify_language_links()
