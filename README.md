@@ -4,11 +4,11 @@ English | [简体中文](README.zh-CN.md)
 
 Public-safe template for creating a private Codex user-configuration repository without publishing personal memory, preferences, credentials, account state, or machine-local runtime details.
 
-This is a Codex-specific implementation of a more general pattern: keep an
-AI/agent working environment portable through a public-safe template plus a
-private overlay for real memory, preferences, credentials, local paths,
-installed state, backup, verification, restore, and rollback. Other agents may
-need different templates because their runtime files and setup surfaces differ.
+This is a Codex-specific public template: keep a Codex working environment
+portable through a public-safe template plus a private overlay for real memory,
+preferences, credentials, local paths, installed state, backup, verification,
+restore, and rollback. Cross-runtime adaptation is out of scope for this
+repository.
 
 ## Start here
 
@@ -25,8 +25,8 @@ need different templates because their runtime files and setup surfaces differ.
 
 This repository is the public Codex-specific configuration template workstream in the
 [`open-resource-governance`](https://github.com/yiheng8023/open-resource-governance)
-ecosystem. It demonstrates the broader agent-environment portability pattern;
-it is not a claim that the pattern is limited to Codex.
+ecosystem. It demonstrates the Codex public-template side of the wider
+public/private configuration model.
 
 ```text
 open-resource-governance
@@ -48,7 +48,7 @@ when you want to understand the wider system:
 
 ## Repository Role
 
-This repository is a template, not a live user configuration. It helps a user build their own private Codex configuration repository with clear safety boundaries, portable structure, and verification hooks. The general idea is portable across agents; this repository only implements the Codex-specific file and workflow shape.
+This repository is a template, not a live user configuration. It helps a user build their own private Codex configuration repository with clear safety boundaries, portable structure, and verification hooks. It intentionally targets Codex-specific files and workflows while removing private content.
 
 This repository ships a public-safe starter root `AGENTS.md`. It is a reviewed
 baseline for request intake, external capability boundaries, reasoning cadence,

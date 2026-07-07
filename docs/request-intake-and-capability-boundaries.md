@@ -57,7 +57,7 @@ should stay public-safe:
   downgrade, target correction, added constraint, withdrawn authority, or new
   side-effect request must be applied before continuing the old plan.
 
-For a private repository, encode these rules in the actual agent instruction
+For a private repository, encode these rules in the actual Codex instruction
 surface, any reusable intake/routing Skills, and verification fixtures. This
 template records the public-safe pattern; it is not the user's full live
 authority.

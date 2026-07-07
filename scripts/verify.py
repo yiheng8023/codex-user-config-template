@@ -58,11 +58,11 @@ def verify_required_files() -> None:
 def verify_public_agents_md() -> None:
     agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
     for phrase in [
-        "Public-Safe Agent Instruction Starter",
+        "Public-Safe Codex AGENTS Starter",
         "Execution Front Gate",
         "External Capability Front Gate",
         "Long Reasoning And Progress Reporting",
-        "Manual selection of a Skill, tool, plugin, MCP server, app, connector",
+        "Manual selection of a Codex Skill, tool, plugin, MCP server, app, connector",
         "Do not commit, push, publish, delete, install, enable, deploy, migrate, update",
         "This starter must remain public-safe",
     ]:
@@ -114,7 +114,7 @@ def verify_language_links() -> None:
         "System context",
         "open-resource-governance/docs/system-topology.md",
         "public Codex-specific configuration template workstream",
-        "broader agent-environment portability pattern",
+        "Codex public-template side of the wider",
         "request-intake and capability-routing boundaries",
     ]:
         if phrase not in english:
@@ -123,7 +123,7 @@ def verify_language_links() -> None:
         "系统位置",
         "open-resource-governance/docs/system-topology.md",
         "公开 Codex 专用配置模板链路",
-        "更通用的 agent 环境可迁移模式",
+        "Codex 公开模板侧",
         "请求入口与能力路由边界",
     ]:
         if phrase not in chinese:

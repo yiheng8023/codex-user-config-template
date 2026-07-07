@@ -10,7 +10,7 @@ This repository may contain:
 - public-safe examples;
 - generic repository maps.
 - a public-safe starter root `AGENTS.md`;
-- optional incremental agent-instruction guidance in docs or examples.
+- optional incremental Codex instruction guidance in docs or examples.
 
 ## Private configuration
 

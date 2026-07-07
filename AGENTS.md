@@ -1,6 +1,6 @@
-# Public-Safe Agent Instruction Starter
+# Public-Safe Codex AGENTS Starter
 
-> Scope: reusable starter guidance for an agent user-configuration repository.
+> Scope: reusable starter guidance for a Codex user-configuration repository.
 > Status: public-safe baseline, not a private memory store, personal preference
 > file, credential surface, or replacement for project-specific instructions.
 
@@ -27,7 +27,7 @@ for the missing source for the blocked unit.
 ## External Capability Front Gate
 
 Before any request to find, recommend, discover, install, enable, connect,
-switch on, or "just try" an external Skill, MCP server, App, Plugin, connector,
+switch on, or "just try" a Codex Skill, MCP server, App, Plugin, connector,
 extension, Hook, tool, or similar capability: first bind the concrete task or
 use case, the capability gap, data or account boundary, authority boundary, and
 verification surface.
@@ -59,8 +59,8 @@ old thread history, active instructions, adjacent topics, or project inertia.
 Ask the smallest blocking question, or state a bounded assumption only when the
 next step is safe, reversible, and does not change authority.
 
-Manual selection of a Skill, tool, plugin, MCP server, app, connector, or
-similar capability is a routing preference signal. It is not by itself
+Manual selection of a Codex Skill, tool, plugin, MCP server, app, connector,
+or similar capability is a routing preference signal. It is not by itself
 authorization, suitability proof, live availability proof, completion evidence,
 or task-contract evidence.
 
@@ -111,7 +111,8 @@ This starter must remain public-safe. Do not add personal memory, credentials,
 tokens, cookies, OAuth state, local filesystem paths, account-specific state,
 private notes, raw chat logs, screenshots, or machine-local runtime details.
 
-Private repositories may add local preferences, runtime-specific tool names,
-installation policy, backup/restore logic, memory workflows, and project
-rules. Keep those private unless each fragment is deliberately declassified,
-reviewed, and rewritten as public-safe generic guidance.
+Private Codex configuration repositories may add local preferences,
+runtime-specific tool names, installation policy, backup/restore logic, memory
+workflows, and project rules. Keep those private unless each fragment is
+deliberately declassified, reviewed, and rewritten as public-safe Codex
+guidance.
