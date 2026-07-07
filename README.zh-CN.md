@@ -14,6 +14,7 @@
 | --- | --- |
 | 创建自己的私有 Codex 配置仓 | 把本仓作为公开安全起点 |
 | 判断哪些内容可以复制 | 查看 [`docs/`](docs) 以及 `config/`、`memory/`、`skills/` 下的占位示例 |
+| 查看公开安全的指令入口草案 | [`AGENTS.md`](AGENTS.md) |
 | 保留请求入口与能力路由边界 | [`docs/request-intake-and-capability-boundaries.md`](docs/request-intake-and-capability-boundaries.md) |
 | 验证模板是否安全 | `python -B scripts/verify.py` |
 | 理解整套系统 | [`open-resource-governance/docs/system-topology.md`](https://github.com/yiheng8023/open-resource-governance/blob/main/docs/system-topology.md) |
@@ -47,10 +48,9 @@ agent-skills-curated
 本仓库是模板，不是真实用户配置。它提供安全边界清晰、结构可迁移、可验证的私有 Codex
 配置仓起点。通用思路可迁移到其它 agent；本仓只实现 Codex 专用的文件和工作流形态。
 
-本仓库故意不提供根目录 `AGENTS.md`。根目录 `AGENTS.md` 在 Codex 中是活的指令面，
-如果公开模板直接发布这个文件，容易被误认为用户真实配置，也可能误覆盖用户已经维护好的
-配置。因此，本仓中的可复用指导应作为“增量材料”审查后合并进私有配置，而不是拿来替换
-已有的 `AGENTS.md`。
+本仓库提供一个公开安全的根目录 `AGENTS.md` starter。它是请求入口、外部能力边界、
+推理节律与收尾覆盖的公开安全底座，不是完整 live 指令栈、个人记忆、凭据载体，也不是
+用户已有 `AGENTS.md` 的整体替代品。使用时应作为起点或经审查的增量材料，谨慎适配。
 
 ## 本仓库提供什么
 
@@ -59,7 +59,9 @@ agent-skills-curated
 - 用于检查公开安全与结构有效性的验证脚本。
 - 关于公开/私有同步、许可证边界和私有仓搭建的说明。
 - 公开安全的请求入口与能力路由边界说明，可作为经审查的增量内容吸收进私有仓的
-  `AGENTS.md`、入口 Skill、路由 Skill 与验证样例，而不是整体替换用户现有配置。
+  `AGENTS.md`、入口 Skill、路由 Skill 与验证样例。
+- 公开安全的根目录 `AGENTS.md` starter，避免私有记忆、本机路径、凭据、账号状态和
+  运行时专属假设。
 
 ## 本仓库不负责什么
 
@@ -85,9 +87,9 @@ private codex-user-config
 
 公开到私有的同步可以自动化；私有到公开的提升必须经过过滤、审查和人工批准。
 
-不要对活指令文件做盲目双向同步。尤其是私有仓根目录 `AGENTS.md` 应保持为用户真实
-配置，除非某个片段被明确脱敏并降级为公开安全示例。公共模板中的指导应通过审查合并进
-用户自己的指令面，保留用户本地偏好、权限边界以及已有项目或用户规则。
+不要对活指令文件做盲目双向同步。如果用户已经有根目录 `AGENTS.md`，必须保留用户本地
+偏好、权限边界以及已有项目或用户规则。公开 starter `AGENTS.md` 可以作为初始底座或
+经审查的更新来源，但不应自动覆盖已有配置。
 
 ## 与整体体系的关系
 
@@ -102,6 +104,7 @@ private codex-user-config
 
 ```text
 config/                  占位示例配置
+AGENTS.md                公开安全的 starter 指令入口
 docs/                    公开/私有、入口/路由边界与搭建说明
 hooks/                   Hook 策略占位，不是真实运行中的自动化
 memory/                  记忆边界占位，不是真实记忆

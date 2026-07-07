@@ -9,6 +9,7 @@ This repository may contain:
 - validation scripts;
 - public-safe examples;
 - generic repository maps.
+- a public-safe starter root `AGENTS.md`;
 - optional incremental agent-instruction guidance in docs or examples.
 
 ## Private configuration
@@ -39,9 +40,8 @@ probe-only wording, personal preferences, and local runtime assumptions. Public
 rules should describe semantic classes and verification expectations, not a
 single user's live configuration.
 
-The public template must not publish a live root `AGENTS.md`. That file is an
-active instruction surface and may already exist in a user's private
-configuration. Public guidance should be delivered as docs, examples, or
-incremental fragments that users can review and merge without replacing their
-own rules. If an example instruction file is added later, name it as an example
-and keep it outside the root active-instruction path.
+The public template may publish a public-safe starter root `AGENTS.md`, but it
+must not publish a user's private live configuration. Public guidance should be
+reviewable starter or incremental material that users can merge without
+replacing their own private rules, preferences, authority boundaries, or local
+runtime assumptions.

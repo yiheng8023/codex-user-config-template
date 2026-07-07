@@ -2,9 +2,10 @@
 
 1. Create a private repository from this template.
 2. Keep real memory, preferences, tokens, local paths, and runtime state in that private repository only.
-3. Replace example URLs and placeholders with your own reviewed values.
-4. Add install, backup, verify, and rollback logic only after you understand the permission boundary.
-5. Run verification before committing changes.
+3. Review the starter `AGENTS.md` before treating it as live authority. Merge it with any existing user, organization, or project instructions instead of blindly overwriting them.
+4. Replace example URLs and placeholders with your own reviewed values.
+5. Add install, backup, verify, and rollback logic only after you understand the permission boundary.
+6. Run verification before committing changes.
 
 Recommended command:
 

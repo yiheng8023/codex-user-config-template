@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED_FILES = [
+    "AGENTS.md",
     "README.md",
     "README.zh-CN.md",
     "NOTICE",
@@ -54,9 +55,29 @@ def verify_required_files() -> None:
         require_file(path)
 
 
-def verify_no_live_agents_md() -> None:
-    if (ROOT / "AGENTS.md").exists():
-        fail("root AGENTS.md must not be published in the public template")
+def verify_public_agents_md() -> None:
+    agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Public-Safe Agent Instruction Starter",
+        "Execution Front Gate",
+        "External Capability Front Gate",
+        "Long Reasoning And Progress Reporting",
+        "Manual selection of a Skill, tool, plugin, MCP server, app, connector",
+        "Do not commit, push, publish, delete, install, enable, deploy, migrate, update",
+        "This starter must remain public-safe",
+    ]:
+        if phrase not in agents:
+            fail(f"AGENTS.md missing public starter phrase: {phrase}")
+    for forbidden in [
+        "C:\\",
+        "C:/",
+        ".codex",
+        ".agents",
+        "yiheng8023",
+        "OPENAI_API_KEY",
+    ]:
+        if forbidden in agents:
+            fail(f"AGENTS.md contains private or runtime-specific marker: {forbidden}")
 
 
 def verify_manifest() -> None:
@@ -109,17 +130,17 @@ def verify_language_links() -> None:
             fail(f"README.zh-CN.md missing system-context phrase: {phrase}")
 
     for phrase in [
-        "intentionally does not ship a root `AGENTS.md`",
-        "incremental material",
-        "not as a file to copy over an existing `AGENTS.md`",
+        "public-safe starter root `AGENTS.md`",
+        "not a complete live instruction stack",
+        "starter material to review and adapt deliberately",
     ]:
         if phrase not in english:
             fail(f"README.md missing AGENTS boundary phrase: {phrase}")
 
     for phrase in [
-        "故意不提供根目录 `AGENTS.md`",
-        "增量材料",
-        "而不是拿来替换",
+        "公开安全的根目录 `AGENTS.md` starter",
+        "不是完整 live 指令栈",
+        "谨慎适配",
     ]:
         if phrase not in chinese:
             fail(f"README.zh-CN.md missing AGENTS boundary phrase: {phrase}")
@@ -138,6 +159,7 @@ def verify_intake_boundary_docs() -> None:
         "candidate evidence, not automatic binding",
         "A user's assertion that a task is clear does not bind missing",
         "Capability routing starts only after the task contract exists",
+        "External capability discovery, catalog lookup, installation prompts",
         "Probe tokens and exact test prompts are liveness or calibration aids only",
         "Apply the boundary by semantic class",
         "doing, viable, mature",
@@ -152,9 +174,9 @@ def verify_intake_boundary_docs() -> None:
     for phrase in [
         "probe-specific overfitting",
         "semantic class",
-        "public guidance should be merged as reviewed incremental material",
-        "does not ship a live root `AGENTS.md`",
-        "Do not promote a private root `AGENTS.md` as a public root `AGENTS.md`",
+        "starter root `AGENTS.md` should be merged as reviewed",
+        "may ship a public-safe starter root `AGENTS.md`",
+        "Do not promote a private root `AGENTS.md` wholesale as a public root",
     ]:
         if phrase not in sync_model:
             fail(f"private-public sync model missing phrase: {phrase}")
@@ -162,7 +184,7 @@ def verify_intake_boundary_docs() -> None:
 
 def main() -> None:
     verify_required_files()
-    verify_no_live_agents_md()
+    verify_public_agents_md()
     verify_manifest()
     verify_no_private_payloads()
     verify_language_links()

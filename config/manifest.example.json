@@ -4,6 +4,7 @@
   "public_safe": true,
   "private_repository_required": true,
   "managed_paths": [
+    "AGENTS.md",
     "config/",
     "docs/",
     "hooks/",

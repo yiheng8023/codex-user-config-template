@@ -14,13 +14,13 @@ private configuration
 
 Public to private can be mostly automated because the public template is
 designed to be non-sensitive. Active instruction surfaces still require care:
-public guidance should be merged as reviewed incremental material, not copied
-over a user's existing root `AGENTS.md`.
+public guidance and the starter root `AGENTS.md` should be merged as reviewed
+material, not blindly copied over a user's existing root `AGENTS.md`.
 
-The public template intentionally does not ship a live root `AGENTS.md`. Keep
-agent instruction guidance in docs, examples, or private repositories unless a
-specific public-safe example is needed and clearly labeled as non-authoritative
-sample material.
+The public template may ship a public-safe starter root `AGENTS.md`. Treat it
+as a baseline for new private configurations or as a reviewed update source for
+existing ones. It must not contain private memory, local paths, credentials,
+account state, personal preferences, or runtime-only assumptions.
 
 ## Guarded direction
 
@@ -38,8 +38,9 @@ Private to public must be a promote step:
 
 Do not run blind bidirectional sync between private and public repositories.
 
-Do not promote a private root `AGENTS.md` as a public root `AGENTS.md`. If a
-rule is reusable, extract the smallest public-safe rule, remove personal meta
-guidance and local assumptions, restate it as a semantic class, and publish it
-as documentation or a clearly named example fragment. The private repository
-remains the authority for the user's live instruction stack.
+Do not promote a private root `AGENTS.md` wholesale as a public root
+`AGENTS.md`. If a rule is reusable, extract the smallest public-safe rule,
+remove personal meta guidance and local assumptions, restate it as a semantic
+class, and publish it as starter guidance, documentation, or a clearly named
+example fragment. The private repository remains the authority for the user's
+live instruction stack.

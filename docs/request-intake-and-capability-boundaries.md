@@ -1,8 +1,9 @@
 # Request Intake And Capability Boundaries
 
-This public template does not ship a live `AGENTS.md`, private memory, or
-vendored Skill bodies. A private configuration repository may implement those
-surfaces, but the reusable boundary should stay public-safe:
+This public template ships a public-safe starter `AGENTS.md`, but not private
+memory, credentials, local runtime state, or vendored Skill bodies. A private
+configuration repository may extend those surfaces, but the reusable boundary
+should stay public-safe:
 
 - Native intent recognition remains the model's job.
 - The intake layer is negative-boundary-first: it prevents uncertain
@@ -33,6 +34,13 @@ surfaces, but the reusable boundary should stay public-safe:
 - Capability routing starts only after the task contract exists. Do not rank
   GitHub, browser automation, local scripts, or other capabilities for an
   unbound task.
+- External capability discovery, catalog lookup, installation prompts,
+  account connection, MCP/App/Plugin/Skill enablement, and similar setup
+  actions start only after the concrete task, capability gap, data/account
+  boundary, authority boundary, and verification surface are bound.
+- "Free", "later useful", "do not really install", manual capability
+  selection, and a declined or pending install prompt are not task binding,
+  suitability proof, or authorization.
 - Probe tokens and exact test prompts are liveness or calibration aids only.
   They must not become the acceptance path.
 - Apply the boundary by semantic class across Chinese, English, mixed-language,
@@ -51,4 +59,5 @@ surfaces, but the reusable boundary should stay public-safe:
 
 For a private repository, encode these rules in the actual agent instruction
 surface, any reusable intake/routing Skills, and verification fixtures. This
-template records the public-safe pattern; it is not the user's live authority.
+template records the public-safe pattern; it is not the user's full live
+authority.

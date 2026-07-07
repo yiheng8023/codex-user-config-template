@@ -16,6 +16,7 @@ need different templates because their runtime files and setup surfaces differ.
 | --- | --- |
 | Create your own private Codex config repo | Use this template as the public-safe starting point |
 | Check what is safe to copy | [`docs/`](docs) and placeholder examples under `config/`, `memory/`, and `skills/` |
+| Review the public-safe instruction starter | [`AGENTS.md`](AGENTS.md) |
 | Preserve request-intake and capability-routing boundaries | [`docs/request-intake-and-capability-boundaries.md`](docs/request-intake-and-capability-boundaries.md) |
 | Verify the template | `python -B scripts/verify.py` |
 | Understand the full system | [`open-resource-governance/docs/system-topology.md`](https://github.com/yiheng8023/open-resource-governance/blob/main/docs/system-topology.md) |
@@ -49,12 +50,11 @@ when you want to understand the wider system:
 
 This repository is a template, not a live user configuration. It helps a user build their own private Codex configuration repository with clear safety boundaries, portable structure, and verification hooks. The general idea is portable across agents; this repository only implements the Codex-specific file and workflow shape.
 
-This repository intentionally does not ship a root `AGENTS.md`. A root
-`AGENTS.md` is an active instruction surface in Codex, and publishing one here
-could be mistaken for a user's live configuration or accidentally replace a
-configuration they already maintain. Reusable guidance in this template should
-therefore be treated as incremental material to review and merge into a private
-configuration, not as a file to copy over an existing `AGENTS.md`.
+This repository ships a public-safe starter root `AGENTS.md`. It is a reviewed
+baseline for request intake, external capability boundaries, reasoning cadence,
+and closeout coverage. It is not a complete live instruction stack, personal
+memory, credential surface, or wholesale replacement for a user's existing
+`AGENTS.md`. Treat it as starter material to review and adapt deliberately.
 
 ## What This Repository Provides
 
@@ -64,8 +64,9 @@ configuration, not as a file to copy over an existing `AGENTS.md`.
 - Documentation for public/private sync, license boundaries, and private setup.
 - Public-safe request-intake and capability-routing boundary guidance that can
   be absorbed into a private `AGENTS.md`, intake Skill, routing Skill, and
-  verification fixtures as reviewed incremental additions rather than a
-  wholesale replacement.
+  verification fixtures as reviewed incremental additions.
+- A public-safe root `AGENTS.md` starter that avoids private memory, local
+  paths, credentials, account state, and runtime-only assumptions.
 
 ## What This Repository Does Not Own
 
@@ -91,12 +92,11 @@ private codex-user-config
 
 Public-to-private sync can be automated for reusable template surfaces. Private-to-public promotion must be filtered, reviewed, and manually approved.
 
-Do not run blind synchronization for active instruction files. In particular,
-a private repository's root `AGENTS.md` remains private user configuration
-unless a specific section is deliberately declassified as a public-safe
-example. Public template guidance should be merged by review into the user's
-own instruction surface, preserving local preferences, authority boundaries,
-and existing project or user rules.
+Do not run blind synchronization for active instruction files. If a user
+already has a root `AGENTS.md`, preserve their local preferences, authority
+boundaries, and existing project or user rules. The public starter `AGENTS.md`
+may be used as an initial baseline or reviewed update source, not as an
+automatic overwrite.
 
 ## Relationship To The Wider System
 
@@ -111,6 +111,7 @@ This template is one workstream in a modular resource-governance system:
 
 ```text
 config/                  Placeholder example configuration
+AGENTS.md                Public-safe starter instruction surface
 docs/                    Public/private, intake/routing, and setup guidance
 hooks/                   Hook policy placeholder, not live automation
 memory/                  Memory boundary placeholder, not real memory
