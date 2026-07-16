@@ -19,19 +19,15 @@ repository.
 | Review the public-safe instruction starter | [`AGENTS.md`](AGENTS.md) |
 | Preserve request-intake and capability-routing boundaries | [`docs/request-intake-and-capability-boundaries.md`](docs/request-intake-and-capability-boundaries.md) |
 | Verify the template | `python -B scripts/verify.py` |
-| Understand the full system | [`open-resource-governance/docs/system-topology.md`](https://github.com/yiheng8023/open-resource-governance/blob/main/docs/system-topology.md) |
+| Understand this template's boundary | [Repository Role](#repository-role) |
 
-## System context
+## Independent Template Context
 
-This repository is the public Codex-specific configuration template workstream in the
-[`open-resource-governance`](https://github.com/yiheng8023/open-resource-governance)
-ecosystem. It demonstrates the Codex public-template side of the wider
-public/private configuration model.
+This repository is an independently usable public Codex-specific configuration
+template. It demonstrates a public-template/private-overlay pattern without
+requiring a repository-family hub or discovery service.
 
 ```text
-open-resource-governance
-  -> maps the whole repository family and public/private rules
-
 codex-user-config-template
   -> provides public-safe structure, placeholders, validation, and setup guidance
 
@@ -42,9 +38,8 @@ agent-skills-curated
   -> may publish reviewed Skill releases that a private Codex configuration can consume
 ```
 
-Use this repository when you want a safe starting point. Use the hub topology
-when you want to understand the wider system:
-[`open-resource-governance/docs/system-topology.md`](https://github.com/yiheng8023/open-resource-governance/blob/main/docs/system-topology.md).
+Use this repository as a self-contained safe starting point. Optional external
+Skill releases remain separately governed inputs, not topology authority.
 
 ## Repository Role
 
@@ -74,7 +69,7 @@ memory, credential surface, or wholesale replacement for a user's existing
 - Personal preferences, prompts, account choices, or local machine paths.
 - OAuth state, credentials, tokens, cookies, browser sessions, logs, caches, or app runtime state.
 - Third-party Skill content governance; use a curated Skills repository for that.
-- Resource discovery, scoring, or lifecycle governance; use a resource-radar repository for that.
+- General resource discovery, scoring, or web-wide lifecycle governance.
 
 ## Relationship To The Private Repository
 
@@ -98,14 +93,12 @@ boundaries, and existing project or user rules. The public starter `AGENTS.md`
 may be used as an initial baseline or reviewed update source, not as an
 automatic overwrite.
 
-## Relationship To The Wider System
+## Optional External Inputs
 
-This template is one workstream in a modular resource-governance system:
-
-- `resource-radar` discovers and evaluates public resources.
-- `agent-skills-curated` governs reviewed Skill content and release manifests.
-- bookmark repositories provide public-safe source directories while private bookmark repositories keep private content.
-- private user configuration repositories install, verify, and operate the user's actual environment.
+Reviewed Skill releases may come from an independently governed curated
+repository. The private user configuration decides whether to pin, install,
+verify, or reject them. No external repository can modify this template or a
+private consumer automatically.
 
 ## Layout
 
@@ -127,7 +120,8 @@ Run:
 python -B scripts/verify.py
 ```
 
-GitHub Actions runs the same verification on pull requests and pushes to `main`.
+GitHub Actions may repeat the same verification on pull requests and pushes to
+`main`; local verification remains sufficient and authoritative.
 
 ## Update Rules
 

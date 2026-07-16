@@ -16,18 +16,14 @@
 | 查看公开安全的指令入口草案 | [`AGENTS.md`](AGENTS.md) |
 | 保留请求入口与能力路由边界 | [`docs/request-intake-and-capability-boundaries.md`](docs/request-intake-and-capability-boundaries.md) |
 | 验证模板是否安全 | `python -B scripts/verify.py` |
-| 理解整套系统 | [`open-resource-governance/docs/system-topology.md`](https://github.com/yiheng8023/open-resource-governance/blob/main/docs/system-topology.md) |
+| 理解本模板边界 | [仓库职责](#仓库职责) |
 
-## 系统位置
+## 独立模板定位
 
-本仓库是
-[`open-resource-governance`](https://github.com/yiheng8023/open-resource-governance)
-生态中的公开 Codex 专用配置模板链路。它展示的是更大公开/私有配置模型中的 Codex 公开模板侧。
+本仓库是可以独立使用的公开 Codex 专用配置模板。它展示公开模板／私有 overlay
+模式，不依赖仓库家族总仓或资源发现服务。
 
 ```text
-open-resource-governance
-  -> 负责整个仓库家族地图和公开/私有规则
-
 codex-user-config-template
   -> 提供公开安全结构、占位符、验证和搭建说明
 
@@ -38,8 +34,7 @@ agent-skills-curated
   -> 可发布已审查 Skill 版本，由私有 Codex 配置仓消费
 ```
 
-如果你需要安全起点，从本仓开始即可。若要理解更大的系统关系，请看总仓拓扑：
-[`open-resource-governance/docs/system-topology.md`](https://github.com/yiheng8023/open-resource-governance/blob/main/docs/system-topology.md)。
+本仓自身就是完整的安全起点。外部 Skill 发布是独立治理的可选输入，不是拓扑权威。
 
 ## 仓库职责
 
@@ -67,7 +62,7 @@ agent-skills-curated
 - 个人偏好、提示词、账号选择或本机路径。
 - OAuth 状态、凭据、token、cookie、浏览器会话、日志、缓存或 app 运行状态。
 - 第三方 Skill 正文治理；这应由精选 Skills 仓负责。
-- 资源发现、评分或生命周期治理；这应由资源雷达仓负责。
+- 通用资源发现、评分或全网生命周期治理。
 
 ## 与私有配置仓的关系
 
@@ -89,14 +84,10 @@ private codex-user-config
 偏好、权限边界以及已有项目或用户规则。公开 starter `AGENTS.md` 可以作为初始底座或
 经审查的更新来源，但不应自动覆盖已有配置。
 
-## 与整体体系的关系
+## 可选外部输入
 
-本模板是模块化资源治理体系中的一条链路：
-
-- `resource-radar` 负责发现和评估公开资源。
-- `agent-skills-curated` 负责已审查 Skill 正文和发布清单。
-- 书签仓负责公开安全来源目录；私有书签仓保留私有内容。
-- 私有用户配置仓负责真实环境的安装、验证和运行。
+已审查 Skill 可以来自独立治理的精选仓。私有用户配置仓自行决定是否固定版本、安装、
+验证或拒绝；任何外部仓库都不能自动修改本模板或私有消费仓。
 
 ## 目录结构
 
@@ -118,7 +109,8 @@ skills/                  Skill 安装策略占位，不复制 Skills 正文
 python -B scripts/verify.py
 ```
 
-GitHub Actions 会在 pull request 和推送到 `main` 时运行同样的验证。
+GitHub Actions 可以在 pull request 和推送到 `main` 时重复验证；本地验证已经足够，
+并保持权威。
 
 ## 更新规则
 

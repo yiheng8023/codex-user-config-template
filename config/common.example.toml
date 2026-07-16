@@ -6,7 +6,6 @@ language = "en"
 
 [repositories]
 skills_curated = "https://github.com/example/agent-skills-curated"
-resource_radar = "https://github.com/example/resource-radar"
 
 [safety]
 public_template = true
