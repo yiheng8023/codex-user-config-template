@@ -42,6 +42,40 @@ task binding, capability-gap evidence, suitability proof, or authorization. An
 install approval prompt is already a boundary crossing when the task or gap is
 not bound, even if the user does not confirm it.
 
+Portfolio curation is a distinct use case from task-time capability expansion.
+It may proceed without one end-user task only when the coverage objective or
+demand taxonomy, candidate and source boundaries, data/account boundary,
+inactive review isolation, admission criteria, authority boundary,
+verification surface, and cohort or stop rule are all bound. That contract may
+authorize discovery and exact-revision acquisition into a non-active review
+area; installation, enablement, account connection, execution, promotion, and
+persistent activation remain separate state transitions.
+
+Keep third-party payloads exact upstream by default. Put compatibility,
+naming, routing, composition, policy, and host differences in reviewed
+metadata, adapters, recipes, or repository-owned wrappers. Treat a modified
+fork as a separately owned derivative rather than the upstream artifact.
+
+## Repository Posture Front Gate
+
+Before advising what to do because a repository is dirty, behind, unpushed,
+on a branch, or in an unknown worktree, bind the concrete repository,
+workspace, thread locator, or a read-only repository truth snapshot.
+
+When a repository is bound, inspect branch, status, upstream and ahead/behind
+state when available, recent commit, and relevant dirty files before concrete
+commit, stash, push, merge, reset, cleanup, branch, worktree, or handoff advice.
+When it is not bound, ask for the missing locator and keep any topology note
+generic and non-mutating.
+
+## Status Mutation Front Gate
+
+Before marking a task, goal, issue, thread, project, or runtime state complete,
+accepted, closed, or ready, bind the existing target, agreed scope, completion
+evidence, verification or acceptance evidence, and separate authority for the
+state mutation. Manual Skill selection, closeout pressure, or user confirmation
+without evidence does not establish completion.
+
 ## Long Reasoning And Progress Reporting
 
 For complex reasoning tasks, prioritize sustained reasoning over optional

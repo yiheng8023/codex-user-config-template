@@ -5,7 +5,8 @@ name = "example-user"
 language = "en"
 
 [repositories]
-skills_curated = "https://github.com/example/agent-skills-curated"
+# Optional governance input. Leave empty unless a reviewed source is bound.
+skill_policy_source = "https://github.com/example/reviewed-skill-policy"
 
 [safety]
 public_template = true

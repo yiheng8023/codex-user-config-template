@@ -61,6 +61,10 @@ def verify_public_agents_md() -> None:
         "Public-Safe Codex AGENTS Starter",
         "Execution Front Gate",
         "External Capability Front Gate",
+        "Portfolio curation is a distinct use case",
+        "Keep third-party payloads exact upstream by default",
+        "Repository Posture Front Gate",
+        "Status Mutation Front Gate",
         "Long Reasoning And Progress Reporting",
         "Manual selection of a Codex Skill, tool, plugin, MCP server, app, connector",
         "Do not commit, push, publish, delete, install, enable, deploy, migrate, update",
@@ -113,7 +117,7 @@ def verify_language_links() -> None:
     for phrase in [
         "Independent Template Context",
         "independently usable public Codex-specific",
-        "requiring a repository-family hub or discovery service",
+        "repository-owned structure, validation, and setup guidance",
         "request-intake and capability-routing boundaries",
     ]:
         if phrase not in english:
@@ -121,11 +125,15 @@ def verify_language_links() -> None:
     for phrase in [
         "独立模板定位",
         "可以独立使用的公开 Codex 专用配置模板",
-        "不依赖仓库家族总仓或资源发现服务",
+        "本仓自有结构、验证和搭建说明",
         "请求入口与能力路由边界",
     ]:
         if phrase not in chinese:
             fail(f"README.zh-CN.md missing system-context phrase: {phrase}")
+
+    for stale_name in ["agent-skills-curated"]:
+        if stale_name in english or stale_name in chinese:
+            fail(f"README files retain retired repository name: {stale_name}")
 
     for phrase in [
         "public-safe starter root `AGENTS.md`",
@@ -158,6 +166,8 @@ def verify_intake_boundary_docs() -> None:
         "A user's assertion that a task is clear does not bind missing",
         "Capability routing starts only after the task contract exists",
         "External capability discovery, catalog lookup, installation prompts",
+        "Portfolio curation is distinct from task-time expansion",
+        "Keep third-party payloads exact upstream",
         "Probe tokens and exact test prompts are liveness or calibration aids only",
         "Apply the boundary by semantic class",
         "doing, viable, mature",
@@ -180,6 +190,14 @@ def verify_intake_boundary_docs() -> None:
             fail(f"private-public sync model missing phrase: {phrase}")
 
 
+def verify_example_config() -> None:
+    example = (ROOT / "config" / "common.example.toml").read_text(encoding="utf-8")
+    if "skills_curated" in example or "agent-skills-curated" in example:
+        fail("common.example.toml retains retired curated-Skills topology")
+    if "skill_policy_source" not in example:
+        fail("common.example.toml must expose a neutral optional Skill policy source")
+
+
 def main() -> None:
     verify_required_files()
     verify_public_agents_md()
@@ -187,6 +205,7 @@ def main() -> None:
     verify_no_private_payloads()
     verify_language_links()
     verify_intake_boundary_docs()
+    verify_example_config()
     print("codex-user-config-template verification passed")
 
 

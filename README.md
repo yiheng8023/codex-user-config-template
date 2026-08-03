@@ -24,8 +24,8 @@ repository.
 ## Independent Template Context
 
 This repository is an independently usable public Codex-specific configuration
-template. It demonstrates a public-template/private-overlay pattern without
-requiring a repository-family hub or discovery service.
+template. It demonstrates a public-template/private-overlay pattern through
+repository-owned structure, validation, and setup guidance.
 
 ```text
 codex-user-config-template
@@ -34,12 +34,13 @@ codex-user-config-template
 private codex-user-config
   -> owns real Codex memory snapshots, preferences, install policy, backups, and rollback
 
-agent-skills-curated
-  -> may publish reviewed Skill releases that a private Codex configuration can consume
+optional reviewed Skill policy/source repository
+  -> may publish governed Skill policy or releases for private consumers
 ```
 
 Use this repository as a self-contained safe starting point. Optional external
-Skill releases remain separately governed inputs, not topology authority.
+Skill policy or releases remain separately governed inputs, not topology
+authority.
 
 ## Repository Role
 
