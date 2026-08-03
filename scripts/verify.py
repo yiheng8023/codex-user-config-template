@@ -198,6 +198,15 @@ def verify_example_config() -> None:
         fail("common.example.toml must expose a neutral optional Skill policy source")
 
 
+def verify_workflow_runtime() -> None:
+    workflow = (ROOT / ".github" / "workflows" / "validate.yml").read_text(
+        encoding="utf-8"
+    )
+    for action in ("actions/checkout@v7", "actions/setup-python@v7"):
+        if action not in workflow:
+            fail(f"validation workflow must use current action: {action}")
+
+
 def main() -> None:
     verify_required_files()
     verify_public_agents_md()
@@ -206,6 +215,7 @@ def main() -> None:
     verify_language_links()
     verify_intake_boundary_docs()
     verify_example_config()
+    verify_workflow_runtime()
     print("codex-user-config-template verification passed")
 
 
