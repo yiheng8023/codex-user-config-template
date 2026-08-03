@@ -20,8 +20,8 @@
 
 ## 独立模板定位
 
-本仓库是可以独立使用的公开 Codex 专用配置模板。它展示公开模板／私有 overlay
-模式，不依赖仓库家族总仓或资源发现服务。
+本仓库是可以独立使用的公开 Codex 专用配置模板，通过本仓自有结构、验证和搭建说明
+展示公开模板／私有 overlay 模式。
 
 ```text
 codex-user-config-template
@@ -30,11 +30,11 @@ codex-user-config-template
 私有 codex-user-config
   -> 负责真实 Codex 记忆快照、偏好、安装策略、备份和回滚
 
-agent-skills-curated
-  -> 可发布已审查 Skill 版本，由私有 Codex 配置仓消费
+可选的已审查 Skill 策略／来源仓库
+  -> 可向私有消费方发布受治理的 Skill 策略或版本
 ```
 
-本仓自身就是完整的安全起点。外部 Skill 发布是独立治理的可选输入，不是拓扑权威。
+本仓自身就是完整的安全起点。可选的外部 Skill 策略或版本是独立治理的输入，不是拓扑权威。
 
 ## 仓库职责
 

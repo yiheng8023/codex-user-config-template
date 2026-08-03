@@ -38,6 +38,15 @@ should stay public-safe:
   account connection, MCP/App/Plugin/Skill enablement, and similar setup
   actions start only after the concrete task, capability gap, data/account
   boundary, authority boundary, and verification surface are bound.
+- Portfolio curation is distinct from task-time expansion. It may discover and
+  acquire a bounded exact-revision cohort into an inactive review area only
+  after its coverage objective, source/data boundaries, isolation, admission
+  criteria, authority, verification surface, and stop rule are bound. It does
+  not authorize installation, activation, account connection, execution, or
+  promotion.
+- Keep third-party payloads exact upstream. Express portability, compatibility,
+  routing, composition, and policy in reviewed metadata, adapters, recipes, or
+  repository-owned wrappers; a modified fork is a separately owned derivative.
 - "Free", "later useful", "do not really install", manual capability
   selection, and a declined or pending install prompt are not task binding,
   suitability proof, or authorization.
