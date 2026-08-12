@@ -58,20 +58,30 @@ def verify_required_files() -> None:
 def verify_public_agents_md() -> None:
     agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
     for phrase in [
-        "Public-Safe Codex AGENTS Starter",
-        "Execution Front Gate",
-        "External Capability Front Gate",
-        "Portfolio curation is a distinct use case",
-        "Keep third-party payloads exact upstream by default",
-        "Repository Posture Front Gate",
-        "Status Mutation Front Gate",
-        "Long Reasoning And Progress Reporting",
-        "Manual selection of a Codex Skill, tool, plugin, MCP server, app, connector",
-        "Do not commit, push, publish, delete, install, enable, deploy, migrate, update",
-        "This starter must remain public-safe",
+        "Codex Thin Collaboration Kernel",
+        "portable, always-on invariants",
+        "Treat the user's latest bound goal",
+        "For answer, explanation, review, diagnosis, or planning requests",
+        "minimum capability that addresses an evidenced task gap",
+        "Before repository mutation, inspect branch, status, HEAD, upstream",
+        "Once direct evidence decides the bounded question, stop",
+        "every step into intake, routing, planning, or closure ceremony",
     ]:
         if phrase not in agents:
-            fail(f"AGENTS.md missing public starter phrase: {phrase}")
+            fail(f"AGENTS.md missing thin-kernel phrase: {phrase}")
+    for stale_heading in [
+        "## Execution Front Gate",
+        "## External Capability Front Gate",
+        "## Repository Posture Front Gate",
+        "## Status Mutation Front Gate",
+        "## Long Reasoning And Progress Reporting",
+        "## Intent Contract",
+        "## Capability Orchestration",
+        "## Closure And Coverage",
+        "## Repository Continuity",
+    ]:
+        if stale_heading in agents:
+            fail(f"AGENTS.md retains workflow-heavy heading: {stale_heading}")
     for forbidden in [
         "C:\\",
         "C:/",
@@ -119,6 +129,9 @@ def verify_language_links() -> None:
         "independently usable public Codex-specific",
         "repository-owned structure, validation, and setup guidance",
         "request-intake and capability-routing boundaries",
+        "portable, always-on kernel",
+        "reproducible residual gap",
+        "cold review material",
     ]:
         if phrase not in english:
             fail(f"README.md missing system-context phrase: {phrase}")
@@ -127,6 +140,9 @@ def verify_language_links() -> None:
         "可以独立使用的公开 Codex 专用配置模板",
         "本仓自有结构、验证和搭建说明",
         "请求入口与能力路由边界",
+        "轻量、可移植、常驻的热层内核",
+        "可复现的残余缺口",
+        "冷层审查材料",
     ]:
         if phrase not in chinese:
             fail(f"README.zh-CN.md missing system-context phrase: {phrase}")
@@ -145,7 +161,7 @@ def verify_language_links() -> None:
 
     for phrase in [
         "公开安全的根目录 `AGENTS.md` starter",
-        "不是完整 live 指令栈",
+        "live 指令栈",
         "谨慎适配",
     ]:
         if phrase not in chinese:
@@ -174,6 +190,8 @@ def verify_intake_boundary_docs() -> None:
         "multiple plausible subjects",
         "intervening user instructions",
         "event-driven re-intake checkpoints",
+        "cold review surface",
+        "not always-on authority",
     ]:
         if phrase not in boundary:
             fail(f"request-intake boundary doc missing phrase: {phrase}")
@@ -188,6 +206,18 @@ def verify_intake_boundary_docs() -> None:
     ]:
         if phrase not in sync_model:
             fail(f"private-public sync model missing phrase: {phrase}")
+
+
+def verify_skill_layering_docs() -> None:
+    skills = (ROOT / "skills" / "README.md").read_text(encoding="utf-8")
+    for phrase in [
+        "native reasoning and the thin kernel first",
+        "explicitly names a Skill",
+        "reproducible residual gap",
+        "Installation or visibility does not activate",
+    ]:
+        if phrase not in skills:
+            fail(f"skills/README.md missing residual-gap boundary: {phrase}")
 
 
 def verify_example_config() -> None:
@@ -214,6 +244,7 @@ def main() -> None:
     verify_no_private_payloads()
     verify_language_links()
     verify_intake_boundary_docs()
+    verify_skill_layering_docs()
     verify_example_config()
     verify_workflow_runtime()
     print("codex-user-config-template verification passed")
