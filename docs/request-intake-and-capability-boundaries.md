@@ -1,9 +1,13 @@
 # Request Intake And Capability Boundaries
 
+> Status: cold review surface for task-bound use; not always-on authority.
+
 This public template ships a public-safe starter `AGENTS.md`, but not private
 memory, credentials, local runtime state, or vendored Skill bodies. A private
 configuration repository may extend those surfaces, but the reusable boundary
-should stay public-safe:
+should stay public-safe. Use the native thin kernel first and consult this
+detailed material only when an explicit request or reproducible residual gap
+makes it relevant:
 
 - Native intent recognition remains the model's job.
 - The intake layer is negative-boundary-first: it prevents uncertain

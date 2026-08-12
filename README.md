@@ -46,11 +46,25 @@ authority.
 
 This repository is a template, not a live user configuration. It helps a user build their own private Codex configuration repository with clear safety boundaries, portable structure, and verification hooks. It intentionally targets Codex-specific files and workflows while removing private content.
 
-This repository ships a public-safe starter root `AGENTS.md`. It is a reviewed
-baseline for request intake, external capability boundaries, reasoning cadence,
-and closeout coverage. It is not a complete live instruction stack, personal
-memory, credential surface, or wholesale replacement for a user's existing
+This repository ships a public-safe starter root `AGENTS.md` as a thin,
+portable, always-on kernel. It keeps only durable invariants for goal fidelity,
+authority, evidence, repository safety, minimal capability use, and stop
+conditions. It is not a complete live instruction stack, personal memory,
+credential surface, or wholesale replacement for a user's existing
 `AGENTS.md`. Treat it as starter material to review and adapt deliberately.
+
+## Runtime Layering
+
+The template prefers native reasoning first:
+
+```text
+thin AGENTS.md kernel                 hot, always-on invariants
+task-bound Skill                     warm, only for an explicit request or reproducible residual gap
+detailed docs, examples, and probes  cold review material
+```
+
+Installation, listing, or visibility does not activate a Skill, tool, Plugin,
+MCP server, App, Hook, plan, test, or prior artifact as task authority.
 
 ## What This Repository Provides
 
@@ -58,9 +72,8 @@ memory, credential surface, or wholesale replacement for a user's existing
 - Example configuration files with placeholders only.
 - Verification scripts that check the template stays public-safe and structurally valid.
 - Documentation for public/private sync, license boundaries, and private setup.
-- Public-safe request-intake and capability-routing boundary guidance that can
-  be absorbed into a private `AGENTS.md`, intake Skill, routing Skill, and
-  verification fixtures as reviewed incremental additions.
+- Public-safe request-intake and capability-routing guidance kept as cold
+  review material for task-bound use, not copied wholesale into the hot kernel.
 - A public-safe root `AGENTS.md` starter that avoids private memory, local
   paths, credentials, account state, and runtime-only assumptions.
 
@@ -98,15 +111,16 @@ automatic overwrite.
 
 Reviewed Skill releases may come from an independently governed curated
 repository. The private user configuration decides whether to pin, install,
-verify, or reject them. No external repository can modify this template or a
-private consumer automatically.
+verify, or reject them. Runtime use still requires an explicit request or a
+reproducible residual gap that native reasoning did not resolve. No external
+repository can modify this template or a private consumer automatically.
 
 ## Layout
 
 ```text
 config/                  Placeholder example configuration
-AGENTS.md                Public-safe starter instruction surface
-docs/                    Public/private, intake/routing, and setup guidance
+AGENTS.md                Public-safe thin collaboration kernel
+docs/                    Cold public/private, intake/routing, and setup guidance
 hooks/                   Hook policy placeholder, not live automation
 memory/                  Memory boundary placeholder, not real memory
 scripts/verify.py        Public-safety and structure validation
