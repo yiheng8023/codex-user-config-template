@@ -63,6 +63,11 @@ task-bound Skill                     warm, only for an explicit request or repro
 detailed docs, examples, and probes  cold review material
 ```
 
+The Agent owns task-time continuity and capability orchestration. Keep
+sequential work in the bound checkout unless a host limit or scope boundary
+requires a verified handoff. Capability exposure follows demand and ends when
+that demand ends.
+
 Installation, listing, or visibility does not activate a Skill, tool, Plugin,
 MCP server, App, Hook, plan, test, or prior artifact as task authority.
 
@@ -114,6 +119,12 @@ repository. The private user configuration decides whether to pin, install,
 verify, or reject them. Runtime use still requires an explicit request or a
 reproducible residual gap that native reasoning did not resolve. No external
 repository can modify this template or a private consumer automatically.
+
+A private bootstrap should install the thin kernel alone by default. Project
+first-party collaboration Skills only through explicit opt-in after a residual
+gap is reproduced. Re-running the default bootstrap is not deprojection; the
+responsible lifecycle mechanism should remove an existing projection
+deliberately and verify the resulting state.
 
 ## Layout
 

@@ -38,6 +38,16 @@ makes it relevant:
 - Capability routing starts only after the task contract exists. Do not rank
   GitHub, browser automation, local scripts, or other capabilities for an
   unbound task.
+- Task-time capability selection and sequencing are Agent-owned mechanics. Do
+  not transfer catalog navigation or tool orchestration to the user. Ask only
+  when a new authority, trust, data, cost, external effect, publication,
+  deployment, or irreversible boundary requires accountable human judgment.
+- Keep sequential continuation in the bound checkout. Switch carriers only for
+  a host limit or scope boundary, verify the handoff before releasing the old
+  carrier, and surface material context loss instead of making the user infer it.
+- Capability exposure is task-scoped and should end when its demand ends.
+  Release task-created resources and residue before closeout; preserve shared
+  or unknown-owned resources unless a separately authorized cleanup binds them.
 - External capability discovery, catalog lookup, installation prompts,
   account connection, MCP/App/Plugin/Skill enablement, and similar setup
   actions start only after the concrete task, capability gap, data/account
@@ -69,6 +79,9 @@ makes it relevant:
   event-driven re-intake checkpoints. A pause/stop instruction, read-only
   downgrade, target correction, added constraint, withdrawn authority, or new
   side-effect request must be applied before continuing the old plan.
+- Conversation, agreement, planning, review, and diagnosis do not authorize a
+  persisted artifact. When the user requests a change, make the smallest bound
+  change and verify only to the consequence level actually claimed.
 
 For a private repository, encode these rules in the actual Codex instruction
 surface, any reusable intake/routing Skills, and verification fixtures. This

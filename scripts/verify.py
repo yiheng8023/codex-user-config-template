@@ -61,10 +61,17 @@ def verify_public_agents_md() -> None:
         "Codex Thin Collaboration Kernel",
         "portable, always-on invariants",
         "Treat the user's latest bound goal",
-        "For answer, explanation, review, diagnosis, or planning requests",
-        "minimum capability that addresses an evidenced task gap",
+        "For answer, explanation, review, diagnosis, planning, conversation",
+        "do not implement or persist an artifact",
+        "Own continuity and surface material context loss",
+        "Switch only for a host limit or scope boundary",
+        "Own tool orchestration; do not transfer it to the user",
+        "release task exposure when",
+        "Release task-created resources and residue before closeout",
+        "cleanup beyond task-owned resources/residue",
         "Before repository mutation, inspect branch, status, HEAD, upstream",
-        "Once direct evidence decides the bounded question, stop",
+        "lead with the conclusion, match the user's",
+        "risks, unknowns, and evidence",
         "every step into intake, routing, planning, or closure ceremony",
     ]:
         if phrase not in agents:
@@ -132,6 +139,9 @@ def verify_language_links() -> None:
         "portable, always-on kernel",
         "reproducible residual gap",
         "cold review material",
+        "Agent owns task-time continuity and capability orchestration",
+        "Capability exposure follows demand",
+        "deprojection",
     ]:
         if phrase not in english:
             fail(f"README.md missing system-context phrase: {phrase}")
@@ -143,6 +153,9 @@ def verify_language_links() -> None:
         "轻量、可移植、常驻的热层内核",
         "可复现的残余缺口",
         "冷层审查材料",
+        "Agent 负责当前任务的连续性和能力编排",
+        "能力暴露随需求开始",
+        "解除投影",
     ]:
         if phrase not in chinese:
             fail(f"README.zh-CN.md missing system-context phrase: {phrase}")
@@ -181,6 +194,10 @@ def verify_intake_boundary_docs() -> None:
         "candidate evidence, not automatic binding",
         "A user's assertion that a task is clear does not bind missing",
         "Capability routing starts only after the task contract exists",
+        "Task-time capability selection and sequencing are Agent-owned mechanics",
+        "Keep sequential continuation in the bound checkout",
+        "Capability exposure is task-scoped",
+        "Conversation, agreement, planning, review, and diagnosis",
         "External capability discovery, catalog lookup, installation prompts",
         "Portfolio curation is distinct from task-time expansion",
         "Keep third-party payloads exact upstream",
@@ -215,6 +232,10 @@ def verify_skill_layering_docs() -> None:
         "explicitly names a Skill",
         "reproducible residual gap",
         "Installation or visibility does not activate",
+        "owns task-time capability selection",
+        "thin kernel alone",
+        "explicit opt-in",
+        "deproject it deliberately",
     ]:
         if phrase not in skills:
             fail(f"skills/README.md missing residual-gap boundary: {phrase}")
