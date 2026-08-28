@@ -19,6 +19,7 @@ repository.
 | Review the public-safe instruction starter | [`AGENTS.md`](AGENTS.md) |
 | Preserve request-intake and capability-routing boundaries | [`docs/request-intake-and-capability-boundaries.md`](docs/request-intake-and-capability-boundaries.md) |
 | Verify the template | `python -B scripts/verify.py` |
+| Check the current official Codex config contract | `python -B scripts/audit_codex_upstream.py --baseline config/upstream-contract.json --config config/common.example.toml` |
 | Understand this template's boundary | [Repository Role](#repository-role) |
 
 ## Independent Template Context
@@ -74,8 +75,9 @@ MCP server, App, Hook, plan, test, or prior artifact as task authority.
 ## What This Repository Provides
 
 - A public-safe repository layout for a private Codex configuration baseline.
-- Example configuration files with placeholders only.
+- A minimal valid Codex configuration example plus public-safe metadata placeholders.
 - Verification scripts that check the template stays public-safe and structurally valid.
+- A reviewed baseline plus a live audit that detects official Codex configuration-surface drift.
 - Documentation for public/private sync, license boundaries, and private setup.
 - Public-safe request-intake and capability-routing guidance kept as cold
   review material for task-bound use, not copied wholesale into the hot kernel.
@@ -129,12 +131,14 @@ deliberately and verify the resulting state.
 ## Layout
 
 ```text
-config/                  Placeholder example configuration
+config/                  Valid Codex example, template metadata, and reviewed upstream baseline
 AGENTS.md                Public-safe thin collaboration kernel
 docs/                    Cold public/private, intake/routing, and setup guidance
 hooks/                   Hook policy placeholder, not live automation
 memory/                  Memory boundary placeholder, not real memory
-scripts/verify.py        Public-safety and structure validation
+scripts/verify.py        Offline public-safety and structure validation
+scripts/audit_codex_upstream.py
+                         Networked comparison with the current official Codex schema
 skills/                  Skill install-policy placeholder, not vendored Skills
 ```
 
@@ -144,10 +148,16 @@ Run:
 
 ```bash
 python -B scripts/verify.py
+python -B scripts/audit_codex_upstream.py \
+  --baseline config/upstream-contract.json \
+  --config config/common.example.toml
 ```
 
-GitHub Actions may repeat the same verification on pull requests and pushes to
-`main`; local verification remains sufficient and authoritative.
+The first command is deterministic and offline. The second fetches the current
+official Codex schema, validates the example, and reports newly added or removed
+top-level configuration surfaces. GitHub Actions runs both checks on changes and
+runs the upstream audit weekly. A changed upstream baseline is a review signal,
+not permission to copy new settings into a private configuration.
 
 ## Update Rules
 
@@ -155,6 +165,7 @@ GitHub Actions may repeat the same verification on pull requests and pushes to
 2. Add only placeholders, examples, schemas, scripts, and generic documentation.
 3. Do not copy private configuration, memory, credentials, local paths, account state, or personal preference files into this repository.
 4. Promote reusable private improvements only through a filtered, reviewed, public-safe change.
+5. Review official Codex schema drift before updating `config/upstream-contract.json`.
 
 ## Safety Boundaries
 

@@ -1,14 +1,8 @@
-# Example only. Copy to a private repository before adding real values.
+# Minimal valid Codex config.toml example.
+# Copy it to a private repository before adding personal values.
 
-[profile]
-name = "example-user"
-language = "en"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
 
-[repositories]
-# Optional governance input. Leave empty unless a reviewed source is bound.
-skill_policy_source = "https://github.com/example/reviewed-skill-policy"
-
-[safety]
-public_template = true
-contains_real_memory = false
-contains_credentials = false
+[sandbox_workspace_write]
+network_access = false

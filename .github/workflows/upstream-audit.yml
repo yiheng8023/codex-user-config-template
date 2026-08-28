@@ -1,21 +1,22 @@
-name: validate
+name: Audit Codex upstream configuration
 
 on:
-  pull_request:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * 1"
+
+permissions:
+  contents: read
 
 jobs:
-  verify:
+  audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
           python-version: "3.x"
-      - run: python -B scripts/verify.py
-      - name: Check the current official Codex configuration contract
+      - name: Compare with the current official Codex schema
         run: >-
           python -B scripts/audit_codex_upstream.py
           --baseline config/upstream-contract.json

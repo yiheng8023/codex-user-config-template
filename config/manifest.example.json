@@ -3,6 +3,17 @@
   "kind": "codex-user-config-template",
   "public_safe": true,
   "private_repository_required": true,
+  "template_profile": {
+    "name": "example-user",
+    "language": "en"
+  },
+  "optional_inputs": {
+    "skill_policy_source": "https://github.com/example/reviewed-skill-policy"
+  },
+  "safety": {
+    "contains_real_memory": false,
+    "contains_credentials": false
+  },
   "managed_paths": [
     "AGENTS.md",
     "config/",

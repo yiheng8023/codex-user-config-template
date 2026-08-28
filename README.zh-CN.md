@@ -16,6 +16,7 @@
 | 查看公开安全的指令入口草案 | [`AGENTS.md`](AGENTS.md) |
 | 保留请求入口与能力路由边界 | [`docs/request-intake-and-capability-boundaries.md`](docs/request-intake-and-capability-boundaries.md) |
 | 验证模板是否安全 | `python -B scripts/verify.py` |
+| 检查当前官方 Codex 配置契约 | `python -B scripts/audit_codex_upstream.py --baseline config/upstream-contract.json --config config/common.example.toml` |
 | 理解本模板边界 | [仓库职责](#仓库职责) |
 
 ## 独立模板定位
@@ -65,8 +66,9 @@ Skill、工具、Plugin、MCP、App、Hook、计划、测试或旧产物被安�
 ## 本仓库提供什么
 
 - 面向私有 Codex 配置基线的公开安全目录结构。
-- 只包含占位符的示例配置。
+- 最小有效 Codex 配置示例与公开安全的元数据占位符。
 - 用于检查公开安全与结构有效性的验证脚本。
+- 用于发现官方 Codex 配置面变化的审查基线与在线漂移审计。
 - 关于公开/私有同步、许可证边界和私有仓搭建的说明。
 - 作为冷层审查材料保存的公开安全请求入口与能力路由说明，仅供按任务使用，不整体复制进
   热层内核。
@@ -114,12 +116,14 @@ private codex-user-config
 ## 目录结构
 
 ```text
-config/                  占位示例配置
+config/                  有效 Codex 示例、模板元数据与已审查上游基线
 AGENTS.md                公开安全的薄协作内核
 docs/                    冷层公开/私有、入口/路由边界与搭建说明
 hooks/                   Hook 策略占位，不是真实运行中的自动化
 memory/                  记忆边界占位，不是真实记忆
-scripts/verify.py        公开安全与结构验证
+scripts/verify.py        离线公开安全与结构验证
+scripts/audit_codex_upstream.py
+                         对照当前官方 Codex schema 的联网审计
 skills/                  Skill 安装策略占位，不复制 Skills 正文
 ```
 
@@ -129,10 +133,14 @@ skills/                  Skill 安装策略占位，不复制 Skills 正文
 
 ```bash
 python -B scripts/verify.py
+python -B scripts/audit_codex_upstream.py \
+  --baseline config/upstream-contract.json \
+  --config config/common.example.toml
 ```
 
-GitHub Actions 可以在 pull request 和推送到 `main` 时重复验证；本地验证已经足够，
-并保持权威。
+第一条命令是确定性的离线检查；第二条会读取当前官方 Codex schema，验证示例，并报告
+新增或移除的顶层配置面。GitHub Actions 会在变更时运行两项检查，并每周执行一次上游
+审计。上游基线变化只是复审信号，不会自动授权把新设置写入私有配置。
 
 ## 更新规则
 
@@ -140,6 +148,7 @@ GitHub Actions 可以在 pull request 和推送到 `main` 时重复验证；本�
 2. 只加入占位符、示例、数据格式、脚本和通用文档。
 3. 不要把私有配置、记忆、凭据、本机路径、账号状态或个人偏好文件复制进来。
 4. 私有仓中的可复用改进，只有经过过滤、审查、公开安全确认后才能提升到这里。
+5. 更新 `config/upstream-contract.json` 前，必须先审查官方 Codex schema 漂移。
 
 ## 安全边界
 

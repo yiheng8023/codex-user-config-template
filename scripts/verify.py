@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import importlib.util
 import json
+import tomllib
 from pathlib import Path
 
 
@@ -15,8 +17,10 @@ REQUIRED_FILES = [
     "SECURITY.md",
     ".github/FUNDING.yml",
     ".github/workflows/validate.yml",
+    ".github/workflows/upstream-audit.yml",
     "config/common.example.toml",
     "config/manifest.example.json",
+    "config/upstream-contract.json",
     "docs/license-policy.md",
     "docs/public-private-boundary.md",
     "docs/private-public-sync-model.md",
@@ -24,6 +28,7 @@ REQUIRED_FILES = [
     "docs/request-intake-and-capability-boundaries.md",
     "hooks/README.md",
     "memory/README.md",
+    "scripts/audit_codex_upstream.py",
     "skills/README.md",
 ]
 
@@ -48,6 +53,15 @@ def require_file(path: str) -> None:
     candidate = ROOT / path
     if not candidate.is_file():
         fail(f"missing required file: {path}")
+
+
+def load_module(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        fail(f"cannot load module: {path.relative_to(ROOT).as_posix()}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def verify_required_files() -> None:
@@ -110,6 +124,17 @@ def verify_manifest() -> None:
         fail("manifest.example.json must declare public_safe=true")
     if data.get("private_repository_required") is not True:
         fail("manifest.example.json must declare private_repository_required=true")
+    profile = data.get("template_profile")
+    if profile != {"name": "example-user", "language": "en"}:
+        fail("manifest.example.json must carry the non-Codex template profile")
+    optional_inputs = data.get("optional_inputs")
+    if not isinstance(optional_inputs, dict) or not isinstance(
+        optional_inputs.get("skill_policy_source"), str
+    ):
+        fail("manifest.example.json must carry the optional Skill policy source")
+    safety = data.get("safety")
+    if safety != {"contains_real_memory": False, "contains_credentials": False}:
+        fail("manifest.example.json safety metadata is incomplete")
 
 
 def verify_no_private_payloads() -> None:
@@ -242,20 +267,56 @@ def verify_skill_layering_docs() -> None:
 
 
 def verify_example_config() -> None:
-    example = (ROOT / "config" / "common.example.toml").read_text(encoding="utf-8")
+    path = ROOT / "config" / "common.example.toml"
+    example = path.read_text(encoding="utf-8")
+    data = tomllib.loads(example)
     if "skills_curated" in example or "agent-skills-curated" in example:
         fail("common.example.toml retains retired curated-Skills topology")
-    if "skill_policy_source" not in example:
-        fail("common.example.toml must expose a neutral optional Skill policy source")
+    for metadata_table in ("profile", "repositories", "safety"):
+        if metadata_table in data:
+            fail(
+                "common.example.toml mixes repository metadata into Codex config: "
+                + metadata_table
+            )
+    if data.get("approval_policy") != "on-request":
+        fail("common.example.toml must use the reviewable on-request example policy")
+    if data.get("sandbox_mode") != "workspace-write":
+        fail("common.example.toml must use the bounded workspace-write sandbox")
+    workspace = data.get("sandbox_workspace_write")
+    if workspace != {"network_access": False}:
+        fail("common.example.toml must keep example workspace network access disabled")
+
+
+def verify_upstream_auditor() -> None:
+    auditor = load_module(
+        "codex_upstream_audit_test", ROOT / "scripts" / "audit_codex_upstream.py"
+    )
+    try:
+        auditor.run_self_test()
+        auditor.load_baseline(ROOT / "config" / "upstream-contract.json")
+    except Exception as exc:
+        fail(f"Codex upstream auditor self-test failed: {exc}")
 
 
 def verify_workflow_runtime() -> None:
-    workflow = (ROOT / ".github" / "workflows" / "validate.yml").read_text(
+    validate = (ROOT / ".github" / "workflows" / "validate.yml").read_text(
         encoding="utf-8"
     )
-    for action in ("actions/checkout@v7", "actions/setup-python@v7"):
-        if action not in workflow:
-            fail(f"validation workflow must use current action: {action}")
+    upstream = (ROOT / ".github" / "workflows" / "upstream-audit.yml").read_text(
+        encoding="utf-8"
+    )
+    for label, workflow in (("validation", validate), ("upstream audit", upstream)):
+        for action in ("actions/checkout@v7", "actions/setup-python@v7"):
+            if action not in workflow:
+                fail(f"{label} workflow must use current action: {action}")
+    for phrase in (
+        "workflow_dispatch:",
+        "schedule:",
+        "scripts/audit_codex_upstream.py",
+        "config/upstream-contract.json",
+    ):
+        if phrase not in upstream:
+            fail(f"upstream audit workflow is missing: {phrase}")
 
 
 def main() -> None:
@@ -267,6 +328,7 @@ def main() -> None:
     verify_intake_boundary_docs()
     verify_skill_layering_docs()
     verify_example_config()
+    verify_upstream_auditor()
     verify_workflow_runtime()
     print("codex-user-config-template verification passed")
 
