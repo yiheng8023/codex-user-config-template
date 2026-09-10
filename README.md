@@ -47,26 +47,34 @@ authority.
 
 This repository is a template, not a live user configuration. It helps a user build their own private Codex configuration repository with clear safety boundaries, portable structure, and verification hooks. It intentionally targets Codex-specific files and workflows while removing private content.
 
-This repository ships a public-safe starter root `AGENTS.md` as a thin,
-portable, always-on kernel. It keeps only durable invariants for goal fidelity,
-authority, evidence, repository safety, minimal capability use, and stop
-conditions. It is not a complete live instruction stack, personal memory,
+This repository ships a public-safe starter root `AGENTS.md` with portable
+Idea-Driven AI meta-guidance. It preserves evidence and authority boundaries,
+dynamic applicability, bounded initiative and continuity without a universal
+workflow or fixed task metrics. It is not a complete live instruction stack, personal memory,
 credential surface, or wholesale replacement for a user's existing
 `AGENTS.md`. Treat it as starter material to review and adapt deliberately.
+
+The source relationship is general English framework to abstract AI English
+edition, with a separate Chinese mapping for each. This starter carries the
+reviewed portable AI body, not private configuration or an additional runtime
+dependency. Its 6 KiB carrier limit replaces the former 4 KiB kernel budget;
+source checks do not prove behavioral improvement or require every principle
+and mechanism to remain globally active.
 
 ## Runtime Layering
 
 The template prefers native reasoning first:
 
 ```text
-thin AGENTS.md kernel                 hot, always-on invariants
+AGENTS.md meta-guidance               hot, context-sensitive judgment guidance
 task-bound Skill                     warm, only for an explicit request or reproducible residual gap
 detailed docs, examples, and probes  cold review material
 ```
 
 The Agent owns task-time continuity and capability orchestration. Keep
-sequential work in the bound checkout unless a host limit or scope boundary
-requires a verified handoff. Capability exposure follows demand and ends when
+sequential work in the bound checkout and choose a supported continuity method
+when actual task conditions require it; verify continuity before releasing
+responsibility. Capability exposure follows demand and ends when
 that demand ends.
 
 Installation, listing, or visibility does not activate a Skill, tool, Plugin,
@@ -122,7 +130,7 @@ verify, or reject them. Runtime use still requires an explicit request or a
 reproducible residual gap that native reasoning did not resolve. No external
 repository can modify this template or a private consumer automatically.
 
-A private bootstrap should install the thin kernel alone by default. Project
+A private bootstrap should install the global meta-guidance alone by default. Project
 first-party collaboration Skills only through explicit opt-in after a residual
 gap is reproduced. Re-running the default bootstrap is not deprojection; the
 responsible lifecycle mechanism should remove an existing projection
@@ -132,7 +140,7 @@ deliberately and verify the resulting state.
 
 ```text
 config/                  Valid Codex example, template metadata, and reviewed upstream baseline
-AGENTS.md                Public-safe thin collaboration kernel
+AGENTS.md                Public-safe portable meta-guidance
 docs/                    Cold public/private, intake/routing, and setup guidance
 hooks/                   Hook policy placeholder, not live automation
 memory/                  Memory boundary placeholder, not real memory

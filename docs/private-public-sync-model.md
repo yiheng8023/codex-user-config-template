@@ -22,6 +22,12 @@ as a baseline for new private configurations or as a reviewed update source for
 existing ones. It must not contain private memory, local paths, credentials,
 account state, personal preferences, or runtime-only assumptions.
 
+An author-authorized, reviewed portable meta-guidance framework may supply the
+public starter. It remains a default to assess and adapt, not universal task
+authority or evidence of behavioral improvement. Shared framework content and
+private personal customizations are different sources; sharing the former does
+not authorize exporting the latter.
+
 ## Guarded direction
 
 Private to public must be a promote step:
@@ -40,7 +46,7 @@ Do not run blind bidirectional sync between private and public repositories.
 
 Do not promote a private root `AGENTS.md` wholesale as a public root
 `AGENTS.md`. If a rule is reusable, extract the smallest public-safe rule,
-remove personal meta guidance and local assumptions, restate it as a semantic
+remove private personal guidance and local assumptions, restate it as a semantic
 class, and publish it as starter guidance, documentation, or a clearly named
 example fragment. The private repository remains the authority for the user's
 live instruction stack.

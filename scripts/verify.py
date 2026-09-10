@@ -71,25 +71,25 @@ def verify_required_files() -> None:
 
 def verify_public_agents_md() -> None:
     agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    if len(agents.encode("utf-8")) > 6144:
+        fail("AGENTS.md exceeds the 6 KiB meta-guidance carrier budget")
+    # Whitespace-insensitive source check; it does not prove behavior.
+    normalized = " ".join(agents.split())
     for phrase in [
-        "Codex Thin Collaboration Kernel",
-        "portable, always-on invariants",
-        "Treat the user's latest bound goal",
-        "For answer, explanation, review, diagnosis, planning, conversation",
-        "do not implement or persist an artifact",
-        "Own continuity and surface material context loss",
-        "Switch only for a host limit or scope boundary",
-        "Own tool orchestration; do not transfer it to the user",
-        "release task exposure when",
-        "Release task-created resources and residue before closeout",
-        "cleanup beyond task-owned resources/residue",
-        "Before repository mutation, inspect branch, status, HEAD, upstream",
-        "lead with the conclusion, match the user's",
-        "risks, unknowns, and evidence",
-        "every step into intake, routing, planning, or closure ceremony",
+        'Idea-Driven AI Collaboration And Systems Engineering Prompt',
+        'compass rather than a template',
+        'higher-priority instructions',
+        'Stand on truth and serve subjects.',
+        'Apply logic models, standards, rules, mechanisms and other means',
+        'Visibility does not require global activation or permanent retention',
+        'evidence, consistency, authority and unfinished responsibilities',
+        'feasible conditions within existing authority',
+        'Preserve the goal, pauses and unfinished responsibilities',
+        'verify continuity before transferring or releasing responsibility',
+        'Every principle must remain testable',
     ]:
-        if phrase not in agents:
-            fail(f"AGENTS.md missing thin-kernel phrase: {phrase}")
+        if phrase not in normalized:
+            fail(f"AGENTS.md missing meta-guidance fragment: {phrase}")
     for stale_heading in [
         "## Execution Front Gate",
         "## External Capability Front Gate",
@@ -161,7 +161,7 @@ def verify_language_links() -> None:
         "independently usable public Codex-specific",
         "repository-owned structure, validation, and setup guidance",
         "request-intake and capability-routing boundaries",
-        "portable, always-on kernel",
+        "Idea-Driven AI meta-guidance",
         "reproducible residual gap",
         "cold review material",
         "Agent owns task-time continuity and capability orchestration",
@@ -175,7 +175,7 @@ def verify_language_links() -> None:
         "可以独立使用的公开 Codex 专用配置模板",
         "本仓自有结构、验证和搭建说明",
         "请求入口与能力路由边界",
-        "轻量、可移植、常驻的热层内核",
+        "采用可移植的思路驱动AI元指导",
         "可复现的残余缺口",
         "冷层审查材料",
         "Agent 负责当前任务的连续性和能力编排",
@@ -253,12 +253,12 @@ def verify_intake_boundary_docs() -> None:
 def verify_skill_layering_docs() -> None:
     skills = (ROOT / "skills" / "README.md").read_text(encoding="utf-8")
     for phrase in [
-        "native reasoning and the thin kernel first",
+        "native reasoning with the global meta-guidance",
         "explicitly names a Skill",
         "reproducible residual gap",
         "Installation or visibility does not activate",
         "owns task-time capability selection",
-        "thin kernel alone",
+        "global meta-guidance alone",
         "explicit opt-in",
         "deproject it deliberately",
     ]:
