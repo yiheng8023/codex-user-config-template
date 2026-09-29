@@ -98,6 +98,10 @@ def validate_value(
         if isinstance(branch, dict):
             issues.extend(validate_value(value, branch, root, path))
 
+    negated = schema.get("not")
+    if isinstance(negated, dict) and not validate_value(value, negated, root, path):
+        issues.append(f"{path}: satisfies a forbidden schema")
+
     for keyword in ("anyOf", "oneOf"):
         branches = schema.get(keyword)
         if isinstance(branches, list):
@@ -112,7 +116,6 @@ def validate_value(
                 keyword == "oneOf" and len(matches) != required_matches
             ):
                 issues.append(f"{path}: does not satisfy {keyword}")
-            return issues
 
     expected = schema.get("type")
     if isinstance(expected, str):
@@ -131,7 +134,26 @@ def validate_value(
         issues.append(f"{path}: expected constant {schema['const']!r}")
     enum = schema.get("enum")
     if isinstance(enum, list) and value not in enum:
-        issues.append(f"{path}: value {value!r} is not in the allowed enum")
+        issues.append(f"{path}: value is not in the allowed enum")
+
+    if isinstance(value, int | float) and not isinstance(value, bool):
+        minimum = schema.get("minimum")
+        maximum = schema.get("maximum")
+        if isinstance(minimum, int | float) and value < minimum:
+            issues.append(f"{path}: below minimum {minimum}")
+        if isinstance(maximum, int | float) and value > maximum:
+            issues.append(f"{path}: above maximum {maximum}")
+
+    if isinstance(value, str):
+        minimum_length = schema.get("minLength")
+        maximum_length = schema.get("maxLength")
+        pattern = schema.get("pattern")
+        if isinstance(minimum_length, int) and len(value) < minimum_length:
+            issues.append(f"{path}: shorter than minLength {minimum_length}")
+        if isinstance(maximum_length, int) and len(value) > maximum_length:
+            issues.append(f"{path}: longer than maxLength {maximum_length}")
+        if isinstance(pattern, str) and re.search(pattern, value) is None:
+            issues.append(f"{path}: does not match the required pattern")
 
     if isinstance(value, dict):
         required = schema.get("required", [])
@@ -243,6 +265,58 @@ def run_self_test() -> None:
     unknown = validate_value({"features": {"retired": True}}, fixture, fixture)
     if not any("unknown configuration key" in item for item in unknown):
         raise AssertionError("unknown nested key was not detected")
+
+    # Exercise constraints used by the official schema without a network dependency.
+    cases = [
+        (
+            "numeric bounds",
+            {"type": "integer", "minimum": 0, "maximum": 100},
+            [0, 50, 100],
+            [-1, 101, True],
+        ),
+        (
+            "string constraints",
+            {"type": "string", "minLength": 1, "maxLength": 4, "pattern": "^[a-z]+$"},
+            ["a", "abcd"],
+            ["", "abcde", "a-b"],
+        ),
+        (
+            "mutually exclusive fields",
+            {"type": "object", "allOf": [{"not": {"required": ["exclude", "filters"]}}]},
+            [{}, {"exclude": []}, {"filters": []}],
+            [{"exclude": [], "filters": []}],
+        ),
+        (
+            "anyOf siblings",
+            {"anyOf": [{"type": "integer"}, {"type": "null"}], "maximum": 100},
+            [None, 0, 100],
+            [101, "100"],
+        ),
+        (
+            "oneOf siblings",
+            {"oneOf": [{"type": "integer"}, {"type": "string"}], "minimum": 0},
+            [0, "name"],
+            [-1, None],
+        ),
+        (
+            "ambiguous oneOf",
+            {"oneOf": [{"type": "number"}, {"type": "integer"}]},
+            [1.5],
+            [1],
+        ),
+    ]
+    for name, constraint, valid_values, invalid_values in cases:
+        for value in valid_values:
+            if validate_value(value, constraint, constraint):
+                raise AssertionError(f"{name}: valid fixture was rejected")
+        for value in invalid_values:
+            if not validate_value(value, constraint, constraint):
+                raise AssertionError(f"{name}: invalid fixture was accepted")
+
+    private_value = "synthetic-private-value"
+    enum_issues = validate_value(private_value, {"enum": ["allowed"]}, {})
+    if not enum_issues or private_value in "\n".join(enum_issues):
+        raise AssertionError("enum diagnostics must reject without echoing input values")
 
 
 def main() -> int:
