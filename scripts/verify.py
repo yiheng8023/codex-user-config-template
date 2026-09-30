@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 import tomllib
@@ -12,6 +13,7 @@ REQUIRED_FILES = [
     "AGENTS.md",
     "README.md",
     "README.zh-CN.md",
+    "LICENSE",
     "NOTICE",
     "CONTRIBUTING.md",
     "SECURITY.md",
@@ -67,6 +69,20 @@ def load_module(name: str, path: Path):
 def verify_required_files() -> None:
     for path in REQUIRED_FILES:
         require_file(path)
+
+
+def verify_license() -> None:
+    # Standard MIT text with this repository's copyright; ignore formatting only.
+    # Source: https://choosealicense.com/licenses/mit/
+    text = (ROOT / "LICENSE").read_text(encoding="utf-8")
+    normalized = " ".join(text.split())
+    expected = "f6159e20e835f180a1afb210c3bbf3582d5a5f939d6cac982862860830bad9a4"
+    if hashlib.sha256(normalized.encode("utf-8")).hexdigest() != expected:
+        fail("LICENSE must preserve the complete standard MIT text and copyright")
+    for path in ("NOTICE", "docs/license-policy.md", "README.md", "README.zh-CN.md"):
+        contents = (ROOT / path).read_text(encoding="utf-8")
+        if "MIT" not in contents or "Apache-2.0" in contents or "CC BY 4.0" in contents:
+            fail(f"{path} must reflect the current MIT license policy")
 
 
 def verify_public_agents_md() -> None:
@@ -321,6 +337,7 @@ def verify_workflow_runtime() -> None:
 
 def main() -> None:
     verify_required_files()
+    verify_license()
     verify_public_agents_md()
     verify_manifest()
     verify_no_private_payloads()

@@ -175,6 +175,12 @@ not permission to copy new settings into a private configuration.
 4. Promote reusable private improvements only through a filtered, reviewed, public-safe change.
 5. Review official Codex schema drift before updating `config/upstream-contract.json`.
 
+## License
+
+Repository-owned template material is licensed under [MIT](LICENSE), including
+scripts, configuration examples, instructions, and documentation. See the
+[license policy](docs/license-policy.md) for third-party and private-content boundaries.
+
 ## Safety Boundaries
 
 Treat private configuration as the authority for a user's actual environment. Treat this template as scaffolding only. If a change might expose personal information, account state, private preferences, or local runtime details, keep it out of this repository.

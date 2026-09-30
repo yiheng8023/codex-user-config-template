@@ -154,6 +154,11 @@ python -B scripts/audit_codex_upstream.py \
 4. 私有仓中的可复用改进，只有经过过滤、审查、公开安全确认后才能提升到这里。
 5. 更新 `config/upstream-contract.json` 前，必须先审查官方 Codex schema 漂移。
 
+## 许可证
+
+本仓自有模板内容采用 [MIT 许可证](LICENSE)，包括脚本、配置示例、指令和文档。
+第三方内容及私有内容的边界见[许可证政策](docs/license-policy.md)。
+
 ## 安全边界
 
 真实私有配置仓才是用户实际环境的权威。本仓库只是脚手架。任何可能暴露个人信息、账号状态、私有偏好或本地运行时细节的内容，都应留在私有仓之外。
